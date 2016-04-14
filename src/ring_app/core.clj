@@ -2,21 +2,19 @@
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
             [ring-app.fetch :as fetch]
-            [ring-app.valid-url? :as valid-url?]
+            [ring-app.validate :as validate]
+            [ring-app.pages :as pages]
             [ring.util.http-response :as response]
             [ring.middleware.reload :refer [wrap-reload]]))
 
-
 (defn response-handler [request-map]
   (response/ok
-    (str "<html><body> your IP is: "
-        (:remote-addr request-map)
-        "</body></html>")))
+    (apply str (pages/home))))
 
 (defn gannet-handler [url]
-  (if (valid-url? url)
-    fetch/links url
-    {:valid-url false :message "Url is not valid"})
+  (if (validate/valid-url? url)
+    (fetch/links url)
+    {:valid-url false :message "Url is not valid"}))
 
 (compojure/defroutes handler
   (compojure/GET "/" request response-handler)
