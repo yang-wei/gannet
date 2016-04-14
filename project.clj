@@ -9,5 +9,6 @@
                  [clj-http "2.1.0"]
                  [compojure "1.5.0"]
                  [clojurewerkz/urly "1.0.0"]
-                 [enlive "1.1.6"]]
+                 [enlive "1.1.6"]
+                 [commons-validator "1.5.0"]]
   :main ring-app.core)
