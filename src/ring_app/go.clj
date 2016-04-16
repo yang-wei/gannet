@@ -16,18 +16,14 @@
 (defn build-attrs [protocol hostname {:keys [href], :as attrs}]
   (resolve-url protocol hostname href))
 
-(defn fetch-url [url]
+(defn scrap-webpage [url]
   (html/html-resource (java.net.URL. url)))
-
-(defn add-status-code [{:keys [absolute-href], :as attrs}]
-  (let [status (get-status-code absolute-href)]
-    (assoc attrs :status status)))
 
 (defn extract-absolute-hrefs [url]
   (let [-url (urly/url-like url)
         hostname (urly/host-of -url)
         protocol (urly/protocol-of -url)]
-    (->> (html/select (fetch-url url) [:a])
+    (->> (html/select (scrap-webpage url) [:a])
          (map extract-attrs)
          (map (partial build-attrs protocol hostname)))))
 

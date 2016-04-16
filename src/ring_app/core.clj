@@ -12,7 +12,7 @@
   (response/ok
     (apply str (pages/home))))
 
-(defn gannet-handler [req]
+(defn analyse-handler [req]
   (let [url (get-in req [:body :url])]
     (if-let [valid-url? (validate/valid-url? url)]
       (response/ok {:url url})
@@ -21,7 +21,7 @@
 (compojure/defroutes handler
   (compojure/GET "/" request response-handler)
   (compojure/POST "/analyse" request
-    (gannet-handler request)))
+    (analyse-handler request)))
 
 (defn -main []
   (jetty/run-jetty
