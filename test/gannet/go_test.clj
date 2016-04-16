@@ -1,6 +1,6 @@
-(ns ring-app.fetch-test
+(ns gannet.go-test 
   (:require [clojure.test :refer :all]
-            [ring-app.fetch :as fetch]))
+            [gannet.go :as go]))
 
 (deftest resolve-url-test
   (testing "Resolve url correctly"

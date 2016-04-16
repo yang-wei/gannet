@@ -1,9 +1,9 @@
-(ns ring-app.core
+(ns gannet.core 
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
-            [ring-app.go :as go]
-            [ring-app.validate :as validate]
-            [ring-app.pages :as pages]
+            [gannet.go :as go]
+            [gannet.validate :as validate]
+            [gannet.pages :as pages]
             [ring.util.http-response :as response]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.reload :refer [wrap-reload]]))

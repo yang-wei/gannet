@@ -1,4 +1,4 @@
-(ns ring-app.pages
+(ns gannet.pages
   (:require [net.cgrand.enlive-html :as html]))
 
 (html/deftemplate home "template/home.html" []

@@ -1,4 +1,4 @@
-(ns ring-app.validate
+(ns gannet.validate
   (:import org.apache.commons.validator.UrlValidator))
 
 (defn valid-url? [url-str]

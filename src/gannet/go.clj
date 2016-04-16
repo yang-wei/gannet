@@ -1,4 +1,4 @@
-(ns ring-app.go
+(ns gannet.go
   (:require [net.cgrand.enlive-html :as html]
             [org.httpkit.client :as http]
             [clojurewerkz.urly.core :as urly]
