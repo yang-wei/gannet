@@ -1,14 +1,14 @@
-# ring-app
+# Gannet 
 
-A Clojure library designed to ... well, that part is up to you.
+Help you detech 404 links on your website
 
 ## Usage
 
-FIXME
+Coming Soon
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Gannet
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
