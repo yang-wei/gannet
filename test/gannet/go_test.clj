@@ -5,10 +5,10 @@
 (deftest resolve-url-test
   (testing "Resolve url correctly"
     (is (=
-         (fetch/resolve-url "http" "example.com" "/faq")
+         (go/resolve-url "http" "example.com" "/faq")
          "http://example.com/faq")
         (=
-         (fetch/resolve-url "http" "example.com" "http://example.com")
+         (go/resolve-url "http" "example.com" "http://example.com")
          "http://example.com"))))
 
 
@@ -16,7 +16,7 @@
   (testing "Extract the needed attributes"
     (let [node-data {:tag "a" :attrs {:href "http://example.com" :class "my-class" :id "my-id"}}]
     (is (=
-         (fetch/extract-attrs node-data)
+         (go/extract-attrs node-data)
          {:href "http://example.com" :class "my-class"})))))
 
 (deftest build-attrs-test 
@@ -27,13 +27,13 @@
             hostname "example.com"
             node-data {:href "http://example2.com/path" :class "my-class"}]
       (is (=
-           (fetch/build-attrs protocol hostname node-data)
-           {:href "http://example2.com/path" :class "my-class" :absolute-href "http://example2.com/path" :absolute-link? true}))))
+           (go/build-attrs protocol hostname node-data)
+           "http://example2.com/path"))))
 
     (testing "When href is relative path"
       (let [protocol "https"
             hostname "example.com"
             node-data {:href "/path" :class "my-class"}]
         (is (=
-             (fetch/build-attrs protocol hostname node-data)
-             {:href "/path" :class "my-class" :absolute-href "https://example.com/path" :absolute-link? false}))))))
+             (go/build-attrs protocol hostname node-data)
+             "https://example.com/path"))))))
