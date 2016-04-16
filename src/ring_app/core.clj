@@ -1,7 +1,7 @@
 (ns ring-app.core
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
-            [ring-app.fetch :as fetch]
+            [ring-app.go :as go]
             [ring-app.validate :as validate]
             [ring-app.pages :as pages]
             [ring.util.http-response :as response]
