@@ -50,8 +50,6 @@
 (defn grab [url]
  (-> url analyse-url wrap-results)) 
 
-(grab "https://github.com")
-
 ;; ------ parallel http request bench marking ------
 ;; clj-http + map 57s
 ;; clj-http + pmap 10s
