@@ -7,7 +7,7 @@
                  [ring "1.4.0"]
                  [metosin/ring-http-response "0.6.5"]
                  [ring/ring-json "0.4.0"]
-                 [clj-http "2.1.0"]
+                 [http-kit "2.1.19"]
                  [compojure "1.5.0"]
                  [clojurewerkz/urly "1.0.0"]
                  [enlive "1.1.6"]

@@ -1,6 +1,5 @@
 (ns ring-app.go
   (:require [net.cgrand.enlive-html :as html]
-            [clj-http.client :as client]
             [org.httpkit.client :as http]
             [clojurewerkz.urly.core :as urly]
             [clojure.java.io :as io]))
