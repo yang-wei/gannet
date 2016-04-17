@@ -12,7 +12,8 @@
                  [clojurewerkz/urly "1.0.0"]
                  [enlive "1.1.6"]
                  [commons-validator "1.5.0"]
-                 [org.clojure/clojurescript "1.8.40" :scope "provided"]]
+                 [org.clojure/clojurescript "1.8.40" :scope "provided"]
+                 [reagent "0.6.0-alpha"]]
   :main gannet.core
   :plugins [[lein-cljsbuild "1.1.3"]]
   :cljsbuild {

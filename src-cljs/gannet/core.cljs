@@ -1,5 +1,14 @@
-(ns gannet.core)
+(ns gannet.core
+  (:require [reagent.core :as r]))
 
-(-> (.getElementById js/document "app")
-    (.-innerHTML)
-    (set! "hello clojurescript"))
+(defn form-component []
+  [:div {:class "form-input"}
+   [:input {:placeholder "Paste your URL here"
+            :type "input"}]
+   [:button "Grab"]])
+
+(defn mount-app! []
+  (r/render-component [form-component]
+                            (.getElementById js/document "app")))
+
+(mount-app!)
