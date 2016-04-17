@@ -11,7 +11,7 @@
 (defn analyse-handler [req]
   (let [url (get-in req [:body :url])]
     (if-let [valid-url? (validate/valid-url? url)]
-      (response/ok {:url url})
+      (response/ok (go/grab url))
       (response/forbidden "Please make sure your URL is in correct format."))))
 
 

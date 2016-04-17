@@ -37,11 +37,10 @@
   (http/get url {:follow-redirects true}))
 
 (defn analyse-url [url]
-  (let [data []
-        hrefs (extract-absolute-hrefs url)
+  (let [hrefs (extract-absolute-hrefs url)
         results (doall (map http-get hrefs))]
     (for [result results]
-      (conj data (response-map @result)))))
+      (response-map @result))))
 
 (defn wrap-results [results]
   (let [total (count (set results))]
