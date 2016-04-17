@@ -17,10 +17,10 @@
   :plugins [[lein-cljsbuild "1.1.3"]]
   :cljsbuild {
     :builds {:app {:source-paths ["src-cljs"]
-                   :compiler {:output-to "target/cljs-build/public/js/app.js"   
-                              :output-dir "target/cljs-build/public/js/out"
+                   :compiler {:output-to "resources/public/js/app.js"
+                              :output-dir "resources/public/js/out"
                               :main "gannet.core"
-                              :asset-path "/js/out"
+                              :asset-path "js/out"
                               :optimizations :none
                               :source-map true
                               :pretty-print true}}}}

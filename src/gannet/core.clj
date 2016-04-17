@@ -1,14 +1,15 @@
 (ns gannet.core 
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
+            [compojure.route :as route]
             [gannet.handler :refer [index-handler analyse-handler]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.reload :refer [wrap-reload]]))
 
 (compojure/defroutes handler
   (compojure/GET "/" request index-handler)
-  (compojure/POST "/analyse" request
-    (analyse-handler request)))
+  (compojure/POST "/analyse" request (analyse-handler request))
+  (route/resources "/"))
 
 (defn -main []
   (jetty/run-jetty
