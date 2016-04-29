@@ -6,6 +6,11 @@ Help you detech 404 links on your website
 
 Coming Soon
 
+## API
+
+```
+curl -d '{"url": "https://github.com"}' -H "Content-Type: application/json" http://localhost:3000/analyse
+```
 ## License
 
 Copyright © 2016 Gannet
