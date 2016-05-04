@@ -19,7 +19,7 @@
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-figwheel "0.5.1"]]
   :cljsbuild {
-    :builds {:app {:source-paths ["src-cljs"]
+    :builds {:app {:source-paths ["front"]
                    :figwheel true
                    :compiler {:output-to "resources/public/js/app.js"
                               :output-dir "resources/public/js/out"
