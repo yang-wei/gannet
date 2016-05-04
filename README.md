@@ -4,7 +4,15 @@ Help you detech 404 links on your website
 
 ## Usage
 
-Coming Soon
+Start everything
+```
+lein run
+lein repl
+lein cljsbuild auto
+
+(if you have tmux install)
+bash ./scripts/lein.sh
+```
 
 ## API
 
