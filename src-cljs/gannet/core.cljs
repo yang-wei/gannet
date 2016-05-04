@@ -2,6 +2,7 @@
   (:require [reagent.core :as r]
             [gannet.components.gannet-form :as gannet-form]
             [gannet.components.result-table :as result-table]))
+
 (defn root-app []
   (let [url (r/atom "")
         result (r/atom nil)]

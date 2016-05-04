@@ -8,7 +8,7 @@ Start everything
 ```
 lein run
 lein repl
-lein cljsbuild auto
+lein figwheel 
 
 (if you have tmux install)
 bash ./scripts/lein.sh

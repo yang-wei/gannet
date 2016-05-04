@@ -1,4 +1,4 @@
 tmux new-session 'lein run' \; \
      split-window -h 'lein repl' \; \
-     split-window 'lein cljsbuild auto' \; \
+     split-window 'lein figwheel' \; \
      select-layout tiled 
