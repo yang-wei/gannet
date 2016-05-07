@@ -11,11 +11,27 @@
   (compojure/POST "/analyse" request (analyse-handler request))
   (route/resources "/"))
 
+(defn status-code-for [cause]
+  (case cause
+    :forbidden-request 403
+    400))
+
+(defn wrap-exception-handling
+  [handler]
+  (fn [request]
+    (try
+      (handler request)
+      (catch clojure.lang.ExceptionInfo e
+        (let [cause (:cause (ex-info e))
+              status-code (status-code-for cause)]
+          {:status status-code :body (.getMessage e)})))))
+
 (defn -main []
   (jetty/run-jetty
    (-> #'handler
        (wrap-json-body {:keywords? true})
        wrap-json-response
+       wrap-exception-handling
        wrap-reload)
    {:port 3000
     :join? false}))

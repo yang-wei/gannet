@@ -17,7 +17,13 @@
   (resolve-url protocol hostname href))
 
 (defn ^:dynamic scrap-webpage [url]
-  (html/html-resource (java.net.URL. url)))
+  (try
+    (html/html-resource (java.net.URL. url))
+    (catch Exception e
+      (throw
+        (ex-info
+          (format "%s is not available" url)
+          {:cause :forbidden-request})))))
 
 (defn extract-absolute-hrefs [url]
   (let [-url (urly/url-like url)
