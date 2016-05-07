@@ -1,6 +1,6 @@
 (ns gannet.utils-test 
-  (:use org.httpkit.fake)
   (:require [clojure.test :refer :all]
+            [gannet.test-helper.fake-page :refer [fake-scrap-webpage]]
             [gannet.utils :refer :all]))
 
 (deftest resolve-url-test
@@ -38,3 +38,11 @@
         (is (=
              (build-attrs protocol hostname node-data)
              "https://example.com/path"))))))
+
+(deftest extract-absolute-hrefs-test
+  (testing "Get 3 links from fake page"
+    (binding [scrap-webpage fake-scrap-webpage]
+     (let [result (extract-absolute-hrefs "http://example.com")]
+       (is (=
+            (count result)
+            3))))))

@@ -16,7 +16,7 @@
 (defn build-attrs [protocol hostname {:keys [href], :as attrs}]
   (resolve-url protocol hostname href))
 
-(defn scrap-webpage [url]
+(defn ^:dynamic scrap-webpage [url]
   (html/html-resource (java.net.URL. url)))
 
 (defn extract-absolute-hrefs [url]
