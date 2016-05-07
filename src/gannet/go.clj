@@ -1,11 +1,11 @@
 (ns gannet.go
-  (:require [gannet.utils :refer [extract-absolute-hrefs http-get response-map]]))
+  (:require [gannet.utils :refer [extract-absolute-hrefs http-get gannet-resopnse-map]]))
 
 (defn analyse-url [url]
   (let [hrefs (extract-absolute-hrefs url)
         results (doall (map http-get hrefs))]
     (for [result results]
-      (response-map @result))))
+      (gannet-resopnse-map @result))))
 
 (defn wrap-results [results]
   (let [total (count (set results))]

@@ -27,7 +27,7 @@
          (map extract-attrs)
          (map (partial build-attrs protocol hostname)))))
 
-(defn response-map [resp]
+(defn gannet-response-map [resp]
   {:status (:status resp)
    :url (-> resp :opts :url)
    :redirects (-> resp :opts :trace-redirects)})
