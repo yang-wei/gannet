@@ -40,9 +40,16 @@
              "https://example.com/path"))))))
 
 (deftest extract-absolute-hrefs-test
-  (testing "Get 3 links from fake page"
+  (testing "Get all absolute url from webpage"
     (binding [scrap-webpage fake-scrap-webpage]
      (let [result (extract-absolute-hrefs "http://example.com")]
        (is (=
             (count result)
-            3))))))
+            4))
+       (is (=
+            (set result)
+            #{"http://ok-link.com",
+              "http://not-found-link.com",
+              "http://error-link.com",
+              "http://example.com/relative-link"
+              }))))))

@@ -7,6 +7,7 @@
             [gannet.go :refer :all]))
 
 (with-fake-http ["http://ok-link.com" 200
+                 "http://example.com/relative-link" 200
                  "http://not-found-link.com" 404 
                  "http://error-link.com" 500]
   (binding [scrap-webpage fake-scrap-webpage]
@@ -15,4 +16,4 @@
         (testing "Successfully get 3 links from fake page"
           (is (=
                (get result :total-count)
-               3)))))))
+               4)))))))

@@ -14,6 +14,7 @@
     {:href href :class class}))
 
 (defn build-attrs [protocol hostname {:keys [href], :as attrs}]
+  "Filter all needed attributes"
   (resolve-url protocol hostname href))
 
 (defn ^:dynamic scrap-webpage [url]

@@ -9,6 +9,7 @@
         <a href='http://ok-link.com'>OK LINK</a>
         <a href='http://not-found-link.com'>NOT FOUND LINK</a>
         <a href='http://error-link.com'>ERROR LINK</a>
+        <a href='/relative-link'>ERROR LINK</a>
       </div>
     </body>
   </html>")
