@@ -16,3 +16,14 @@
 
 (defn fake-scrap-webpage [_]
   (html/html-resource (java.io.StringReader. fake-body)))
+
+(def relative-link-fake-body
+  "<html
+      <body>
+        <a href='http://example.com/test1'>Test 1</a>
+        <a href='/test2'>Test 2</a>
+      </body>
+    </html>")
+
+(defn fake-relative-webpage [_]
+  (html/html-resource (java.io.StringReader. relative-link-fake-body)))
