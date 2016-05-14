@@ -1,5 +1,6 @@
 (ns gannet.go
-  (:require [gannet.utils :refer [extract-absolute-hrefs http-get gannet-response-map]]))
+  (:require [gannet.utils :refer [extract-absolute-hrefs http-get gannet-response-map]]
+            [gannet.crawler :refer [run-spider]]))
 
 (defn analyse-url [url]
   (let [hrefs (extract-absolute-hrefs url)
@@ -20,3 +21,6 @@
 ;; clj-http + future 33s
 ;; map + http/get 5s  <---- current implementation
 ;; pmap + http/get 8s
+
+(defn crawl [urls]
+  (-> urls run-spider wrap-results))
