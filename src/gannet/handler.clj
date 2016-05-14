@@ -1,5 +1,6 @@
 (ns gannet.handler
   (:require [gannet.go :as go]
+            [gannet.crawler :as crawler]
             [gannet.validate :as validate]
             [gannet.pages :as pages]
             [ring.util.http-response :as response]))
@@ -14,4 +15,9 @@
       (response/ok (go/grab url))
       (response/forbidden "Please make sure your URL is in correct format."))))
 
+(defn crawler-handler [req]
+  (let [urls (get-in req [:body :urls])]
+    (if (every? validate/valid-url? urls)
+      (response/ok (crawler/run-spider urls))
+      (response/forbidden "Please make sure your URLs are in correct format."))))
 

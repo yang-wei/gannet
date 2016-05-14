@@ -2,13 +2,14 @@
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
             [compojure.route :as route]
-            [gannet.handler :refer [index-handler analyse-handler]]
+            [gannet.handler :refer [index-handler analyse-handler crawler-handler]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.reload :refer [wrap-reload]]))
 
 (compojure/defroutes handler
   (compojure/GET "/" request index-handler)
   (compojure/POST "/analyse" request (analyse-handler request))
+  (compojure/POST "/crawler" request (crawler-handler request))
   (route/resources "/"))
 
 (defn status-code-for [cause]
