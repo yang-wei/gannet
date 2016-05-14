@@ -39,6 +39,7 @@
     (->> (html/select (scrap-webpage url) [:a])
          (map extract-attrs) ;; TODO: minus the rounds of iteration
          (map (partial build-attrs protocol hostname))
+         set                 ;; make sure it's unique
          (filter same-origin-predicate)))))
 
 (defn gannet-response-map [resp]
