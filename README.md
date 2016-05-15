@@ -18,6 +18,7 @@ bash ./scripts/lein.sh
 
 ```
 curl -d '{"url": "https://github.com"}' -H "Content-Type: application/json" http://localhost:3000/analyse
+ curl -d '{"urls": ["https://yang-wei.github.io"]}' -H "Content-Type: application/json" http://localhost:3000/crawler
 ```
 ## License
 
