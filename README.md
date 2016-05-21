@@ -14,6 +14,16 @@ lein figwheel
 bash ./scripts/lein.sh
 ```
 
+### migration
+
+Migration folder is located in `resources/migrations`. To create new migration:
+
+```
+touch resources/migrations/`date "+%Y%m%d%H%M%S"`-xxx.{up,down}.sql
+```
+
+where xxx is your file name.
+
 ## API
 
 ```
