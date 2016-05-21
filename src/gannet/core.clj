@@ -3,6 +3,7 @@
             [compojure.core :as compojure]
             [compojure.route :as route]
             [gannet.handler :refer [index-handler analyse-handler crawler-handler]]
+            [gannet.db.migration :as migration]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.reload :refer [wrap-reload]]))
 
@@ -27,12 +28,19 @@
               status-code (status-code-for cause)]
           {:status status-code :body (.getMessage e)})))))
 
-(defn -main []
+(defn start-app []
   (jetty/run-jetty
-   (-> #'handler
-       (wrap-json-body {:keywords? true})
-       wrap-json-response
-       wrap-exception-handling
-       wrap-reload)
-   {:port 3000
-    :join? false}))
+    (-> #'handler
+        (wrap-json-body {:keywords? true})
+        wrap-json-response
+        wrap-exception-handling
+        wrap-reload)
+    {:port 3000
+     :join? false}))
+
+(defn -main [& args]
+  (cond
+    (some #{"migrate" "rollback" "reset"} args)
+    (do (migration/migrate args) (System/exit 0))
+    :else
+    (start-app args)))

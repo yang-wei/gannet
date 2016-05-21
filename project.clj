@@ -22,6 +22,7 @@
                  [org.clojure/java.jdbc "0.6.1"]
                  [mysql/mysql-connector-java "5.1.39"]
                  [migratus "0.8.21"]
+                 [com.carouselapps/to-jdbc-uri "0.5.0"]
                  ;; frontend
                  [org.clojure/clojurescript "1.8.40" :scope "provided"]
                  [reagent "0.5.1"]
@@ -46,8 +47,4 @@
   ^{:protect false}
   [:target-path
    [:cljsbuild :builds :app :compiler :output-dir]
-   [:cljsbuild :builds :app :compiler :output-to]]
-  ;; setup are done in profiles.clj
-  :migratus {:store :database
-             :migration-dir "migrations"}
-  )
+   [:cljsbuild :builds :app :compiler :output-to]])
