@@ -8,6 +8,7 @@
   ([targets ch-timeout]
    (let [c (timeout ch-timeout)]
      (doseq [t targets]
+       ;; grab only internal link
        (go (>! c (extract-absolute-hrefs t true))))
      (loop [cur-t 0
             output #{}]
