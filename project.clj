@@ -23,6 +23,7 @@
                  [mysql/mysql-connector-java "5.1.39"]
                  [migratus "0.8.21"]
                  [com.carouselapps/to-jdbc-uri "0.5.0"]
+                 [yesql "0.5.3"]
                  ;; frontend
                  [org.clojure/clojurescript "1.8.40" :scope "provided"]
                  [reagent "0.5.1"]
