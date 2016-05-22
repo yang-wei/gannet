@@ -1,14 +1,14 @@
--- name: fetch-links-by-domain
+-- name: fetch-links-by-page
 -- doc: list up links by providing domain
-SELECT * FROM link WHERE domain_id = :domain_id
+SELECT * FROM link WHERE page_id = :page_id
 
--- name: create-domain<!
+-- name: create-link<!
 INSERT INTO link
 (url, domain_id, page, status_code, content_type)
 VALUES
 (:url, :domain_id, :page, :status_code, :content_type)
 
--- name: update-domain!
+-- name: update-link!
 UPDATE link
 SET
 status_code = :status_code,

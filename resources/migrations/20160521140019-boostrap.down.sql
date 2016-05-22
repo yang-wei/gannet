@@ -1,3 +1,5 @@
 DROP TABLE IF EXISTS link;
 --;;
+DROP TABLE IF EXISTS page;
+--;;
 DROP TABLE IF EXISTS domain;
