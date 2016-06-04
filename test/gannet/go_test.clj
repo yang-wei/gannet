@@ -1,15 +1,14 @@
 (ns gannet.go-test 
-  (:use org.httpkit.fake)
-  (:require [org.httpkit.client :as http])
+  (:use clj-http.fake)
   (:require [clojure.test :refer :all]
             [gannet.test-helper.fake-page :refer [fake-scrap-webpage]]
             [gannet.utils :refer [scrap-webpage]]
             [gannet.go :refer :all]))
 
-(with-fake-http ["http://ok-link.com" 200
-                 "http://example.com/relative-link" 200
-                 "http://not-found-link.com" 404 
-                 "http://error-link.com" 500]
+(with-fake-routes {"http://ok-link.com" (fn [_] {:status 200 :headers {} :body "ok-link"})
+                   "http://example.com/relative-link" (fn [_] {:status 200 :headers {} :body "relative-link"})
+                   "http://not-found-link.com" (fn [_] {:status 404 :headers {} :body "not-found"})
+                   "http://error-link.com" (fn [_] {:status 500 :headers {} :body "error"})}
   (binding [scrap-webpage fake-scrap-webpage]
     (let [result (grab "http://example.com")]
       (deftest grab-test 

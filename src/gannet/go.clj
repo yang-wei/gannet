@@ -1,12 +1,20 @@
 (ns gannet.go
   (:require [gannet.utils :refer [extract-absolute-hrefs http-get gannet-response-map]]
+            [clojure.core.async :refer [chan <!! >! go]]
             [gannet.crawler :refer [run-spider]]))
 
 (defn analyse-url [url]
   (let [hrefs (extract-absolute-hrefs url)
-        results (doall (map http-get hrefs))]
-    (for [result results]
-      (gannet-response-map @result))))
+        c (chan)]
+    (doseq [href hrefs]
+      (go (>! c (http-get href))))
+    (loop [cur-href 0
+           output []]
+      (if (= cur-href (count hrefs))
+        output
+        (let [resp (<!! c)]
+          (recur (inc cur-href)
+                 (conj output resp)))))))
 
 (defn wrap-results [results]
   (let [total (count (set results))]
@@ -16,11 +24,23 @@
  (-> url analyse-url wrap-results)) 
 
 ;; ------ parallel http request bench marking ------
-;; clj-http + map 57s
-;; clj-http + pmap 10s
-;; clj-http + future 33s
-;; map + http/get 5s  <---- current implementation
-;; pmap + http/get 8s
+;;
+;; (time (doall (analyse-url "https://github.com")))
+;; -------------------------------------------- 
+;;    naive solution: clj-http + map
+;; --------------------------------------------
+;; "Elapsed time: 20000 msecs"
+;; 
+;; -------------------------------------------- 
+;;    pmap: clj-http + pmap
+;; -------------------------------------------- 
+;; "Elapsed time: 5389.229782 msecs"
+;; 
+;; -------------------------------------------- 
+;;    async go, channel, clj-http
+;; -------------------------------------------- 
+;; "Elapsed time: 2524.214618 msecs"
+;; "Elapsed time: 2720.940945 msecs"
 
 (defn crawl [urls]
   (-> urls run-spider wrap-results))

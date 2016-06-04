@@ -43,4 +43,4 @@
     (some #{"migrate" "rollback" "reset"} args)
     (do (migration/migrate args) (System/exit 0))
     :else
-    (start-app args)))
+    (start-app)))

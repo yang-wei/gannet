@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.async "0.2.374"]
-                 [http-kit "2.1.19"]
+                 [clj-http "3.1.0"]
                  [clojurewerkz/urly "1.0.0"]
                  [enlive "1.1.6"]
                  [commons-validator "1.5.0"]
@@ -17,7 +17,7 @@
                  ;; config
                  [environ "1.0.3"]
                  ;; test
-                 [http-kit.fake "0.2.1"]
+                 [clj-http-fake "1.0.2"]
                  ;; database
                  [org.clojure/java.jdbc "0.6.1"]
                  [mysql/mysql-connector-java "5.1.39"]

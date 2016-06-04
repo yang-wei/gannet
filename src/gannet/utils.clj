@@ -1,6 +1,6 @@
 (ns gannet.utils
   (:require [net.cgrand.enlive-html :as html]
-            [org.httpkit.client :as http]
+            [clj-http.client :as client]
             [clojurewerkz.urly.core :as urly]
             [clojure.java.io :as io]))
 
@@ -42,11 +42,14 @@
          set                 ;; make sure it's unique
          (filter same-origin-predicate)))))
 
+;; (extract-absolute-hrefs "https://appeti.jp")
+
 (defn gannet-response-map [resp]
   {:status (:status resp)
-   :url (-> resp :opts :url)
-   :redirects (-> resp :opts :trace-redirects)})
+   :url (:url resp)})
 
 (defn http-get [url]
   ;; can turn off redirect flag here
-  (http/get url {:follow-redirects true}))
+  (let [result (client/get url {:throw-exceptions false :follow-redirects false })]
+    {:url url
+     :status (:status result)}))
