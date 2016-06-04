@@ -50,6 +50,6 @@
 
 (defn http-get [url]
   ;; can turn off redirect flag here
-  (let [result (client/get url {:throw-exceptions false :follow-redirects false })]
+  (let [result (client/get url {:throw-exceptions false :insecure? true :follow-redirects false })]
     {:url url
      :status (:status result)}))
