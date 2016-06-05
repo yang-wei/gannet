@@ -1,4 +1,5 @@
 (ns gannet.core 
+  (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :as compojure]
             [compojure.route :as route]

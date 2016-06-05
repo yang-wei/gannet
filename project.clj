@@ -30,6 +30,8 @@
                  [cljsjs/fixed-data-table "0.6.0-1"]
                  [cljs-ajax "0.5.4"]]
   :main gannet.core
+  :aot [gannet.core]
+  :hooks [leiningen.cljsbuild]
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-figwheel "0.5.1"]
             [migratus-lein "0.3.3"]
