@@ -4,14 +4,25 @@ Help you detech 404 links on your website
 
 ## Usage
 
+### development
 Start everything
 ```
 lein run
 lein repl
 lein figwheel 
+```
 
-(if you have tmux install)
-bash ./scripts/lein.sh
+### build for production
+
+```
+make build
+java -jar target/gannet-{version}.jar
+```
+
+### test
+
+```
+lein test
 ```
 
 ### migration
@@ -20,6 +31,7 @@ Migration folder is located in `resources/migrations`. To create new migration:
 
 ```
 touch resources/migrations/`date "+%Y%m%d%H%M%S"`-xxx.{up,down}.sql
+lein run migrate
 ```
 
 where xxx is your file name.
@@ -28,11 +40,5 @@ where xxx is your file name.
 
 ```
 curl -d '{"url": "https://github.com"}' -H "Content-Type: application/json" http://localhost:3000/analyse
- curl -d '{"urls": ["https://yang-wei.github.io"]}' -H "Content-Type: application/json" http://localhost:3000/crawler
+curl -d '{"urls": ["https://yang-wei.github.io"]}' -H "Content-Type: application/json" http://localhost:3000/crawler
 ```
-## License
-
-Copyright © 2016 Gannet
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
