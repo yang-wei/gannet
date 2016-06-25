@@ -30,19 +30,20 @@
   "Extract all url on a webpage. If second arg is set to true, only urls which have same domain will be returned"
   ([url] (extract-absolute-hrefs url false))
   ([url same-origin?]
-   (let [-url (urly/url-like url)
-        hostname (urly/host-of -url)
-        protocol (urly/protocol-of -url)
-        same-origin-predicate (if same-origin?
-                         #(= hostname (urly/host-of %))
-                         identity)]
+   (try
+     (let [-url (urly/url-like url)
+           hostname (urly/host-of -url)
+           protocol (urly/protocol-of -url)
+           same-origin-predicate (if same-origin?
+                                   #(= hostname (urly/host-of %))
+                                   identity)]
     (->> (html/select (scrap-webpage url) [:a])
          (map extract-attrs) ;; TODO: minus the rounds of iteration
          (map (partial build-attrs protocol hostname))
          set                 ;; make sure it's unique
-         (filter same-origin-predicate)))))
-
-;; (extract-absolute-hrefs "https://appeti.jp")
+         (filter same-origin-predicate)))
+     ;; TODO: handler invalid url
+     (catch Exception e []))))
 
 (defn gannet-response-map [resp]
   {:status (:status resp)

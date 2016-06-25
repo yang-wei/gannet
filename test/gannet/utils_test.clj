@@ -61,3 +61,9 @@
         (is (=
              (set result)
              #{"http://example.com/relative-link"}))))))
+
+(deftest extract-absolute-hrefs-nil-test
+  (testing "Return nil when invalid url is given"
+    (is (=
+         (extract-absolute-hrefs "*%20http://blog.fogus.me/2010/09/28/thrush-in-clojure-redux/")
+         []))))
