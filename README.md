@@ -1,8 +1,8 @@
 # Gannet 
 
-![Gannet](http://scienceblogs.com/tetrapodzoology/wp-content/blogs.dir/471/files/2012/04/i-a6deb65b341b5bdf7e547dd86d29a2b6-Northern_Gannet_wikipedia_Dec_2008.jpg)
+![Gannet](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Gannet4.jpg/220px-Gannet4.jpg)
 
-Help you detech 404 links on your website
+Help you detect 404 links on your website
 
 ## Usage
 
